@@ -1,0 +1,28 @@
+<div class="col-md-4">
+        <div class="card mb-4 border-0 rounded-3 shadow">
+            <div class="card-body">
+                <form method="GET">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Категория</label>
+                        <select name="category" id="category" class="form-select">
+                            <option value="">Выберите категорию</option>
+                            {% for category_value, category_display in form.fields.category.choices %}
+                                <option value="{{ category_value }}">{{ category_display }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="location" class="form-label">Местоположение</label>
+                        <select name="location" id="location" class="form-select">
+                            <option value="">Выберите местоположение</option>
+                            {% for location_value, location_display in form.fields.location.choices %}
+                                <option value="{{ location_value }}">{{ location_display }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Применить</button>
+                </form>
+            </div>
+        </div>
+    </div>

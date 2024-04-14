@@ -1,0 +1,33 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-4">
+    {% include "calendar_app/holiday_filter.html" %}
+    <div class="col-md-8">
+        {% for holiday in today_holidays %}
+            <div class="card mb-4 border-0 rounded-3 shadow">
+                <div class="card-body">
+                <h3 class="card-subtitle mb-3 text-muted">{{ holiday.name }}</h3>
+                <p class="card-text mb-4">{{ holiday.description }}</p>
+                <hr style="border-top: 1px solid #ccc;">
+                <p class="card-text text-muted">Местоположение: {{ holiday.location }}</p>
+                <div class="mt-3">
+                    {% for hashtag in holiday.hashtags.all %}
+                        <a href="{% url 'holidays_by_hashtag' hashtag=hashtag.slug %}" class="badge bg-secondary">{{ hashtag.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+            <div class="card border-0 rounded-3 shadow mb-4">
+                <div class="card-body">
+                    <p class="card-text text-muted text-center">На сегодня нет запланированных праздников.</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
