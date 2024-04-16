@@ -1,9 +1,24 @@
 from django.shortcuts import render
+from django.http import JsonResponse
 from django.utils import timezone
 from .models import Holiday, Hashtag, Category, Location
 
 
-from django.utils import timezone
+def search(request):
+    today = timezone.now().date()
+    q = request.GET.get("query")
+    if q:
+        # Выполняем поиск по имени и описанию праздника
+        holidays = Holiday.objects.filter(name__icontains=q) | Holiday.objects.filter(
+            description__icontains=q
+        )
+        return render(
+            request, "calendar_app/search_results.html", {"search_results": holidays, "today": today}
+        )
+    else:
+        return render(
+            request, "calendar_app/search_results.html", {"search_results": []}
+        )
 
 
 def index(request):
@@ -17,9 +32,7 @@ def index(request):
     category = request.GET.get("category")
     location = request.GET.get("location")
 
-    selected_holidays = (
-        holidays_today  # Показывать только праздники сегодняшнего дня по умолчанию
-    )
+    selected_holidays = holidays_today
 
     if category and category != "":
         selected_holidays = all_holidays.filter(category=category)

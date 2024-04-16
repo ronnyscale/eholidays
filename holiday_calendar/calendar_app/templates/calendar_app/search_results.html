@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Главная страница{% endblock %}
+{% block title %}Результаты поиска{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center mt-4">
@@ -14,7 +14,7 @@
             </form>
         </div>
     </div>
-    <div class="card mb-4 border-0 rounded-3 shadow ">
+    <div class="card mb-4 border-0 rounded-3 shadow">
         <div class="card-body">
             <form method="get">
                 {% csrf_token %}
@@ -81,8 +81,8 @@
             </div>
         </div>
 
-        {% if selected_holidays %}
-            {% for holiday in selected_holidays %}
+        {% if search_results %}
+            {% for holiday in search_results %}
                 <div class="card mb-4 border-0 rounded-3 shadow">
                     <div class="card-body">
                         <h3 class="card-subtitle mb-3 text-muted">{{ holiday.name }}</h3>

@@ -9,4 +9,5 @@ urlpatterns = [
         views.get_holidays_by_hashtag,
         name="holidays_by_hashtag",
     ),
+    path("search/", views.search, name="search"),
 ]
