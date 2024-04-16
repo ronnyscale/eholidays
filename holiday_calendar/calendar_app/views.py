@@ -1,37 +1,42 @@
 from django.shortcuts import render
-from django.http import JsonResponse
-from .models import Holiday, Hashtag
-from .forms import HolidayFilterForm
-from datetime import datetime
+from django.utils import timezone
+from .models import Holiday, Hashtag, Category, Location
+
+
+from django.utils import timezone
 
 
 def index(request):
-    today = datetime.now().date()
-    today_holidays = Holiday.objects.filter(date=today)
-    num_today_holidays = today_holidays.count()
+    today = timezone.now().date()
+    holidays_today = Holiday.objects.filter(date=today)
+    all_holidays = Holiday.objects.all()
 
-    # Форма фильтрации
-    if request.method == "GET":
-        form = HolidayFilterForm(request.GET)
-        if form.is_valid():
-            category = form.cleaned_data.get("category")
-            location = form.cleaned_data.get("location")
-            if category:
-                today_holidays = today_holidays.filter(
-                    category__name=category
-                )  # Фильтруем по имени категории
-            if location:
-                today_holidays = today_holidays.filter(location=location)
-    else:
-        form = HolidayFilterForm()
+    categories = Category.objects.all()
+    locations = Location.objects.all()
+
+    category = request.GET.get("category")
+    location = request.GET.get("location")
+
+    selected_holidays = (
+        holidays_today  # Показывать только праздники сегодняшнего дня по умолчанию
+    )
+
+    if category and category != "":
+        selected_holidays = all_holidays.filter(category=category)
+
+    if location and location != "":
+        selected_holidays = selected_holidays.filter(location=location)
 
     return render(
         request,
         "calendar_app/index.html",
         {
-            "today_holidays": today_holidays,
-            "num_today_holidays": num_today_holidays,
-            "form": form,  # Передаем форму фильтрации в шаблон
+            "today": today,
+            "selected_holidays": selected_holidays,
+            "categories": categories,
+            "locations": locations,
+            "selected_category": int(category) if category else None,
+            "selected_location": int(location) if location else None,
         },
     )
 
