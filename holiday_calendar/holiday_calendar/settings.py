@@ -31,16 +31,18 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'calendar_app',
+    "calendar_app",
     
-    'bootstrap4',
+    "bootstrap4",
+    "admin_interface",
+    "colorfield",
     
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
 ]
 
 MIDDLEWARE = [
@@ -125,3 +127,36 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+ADMIN_INTERFACE_CONFIG = {
+    "SEARCH_URL": "http://google.com/search?q=",  # Настройка поиска, можно оставить пустым
+    "CONFIGS": {
+        "skin": "skin-blue",  # Цветовая схема. Доступные значения: skin-blue, skin-black, skin-red, skin-yellow, skin-purple, skin-green
+        "layout": "vertical",  # Вертикальный или горизонтальный интерфейс. Доступные значения: vertical, horizontal
+        "boxed": False,  # Установите в True, чтобы иметь ограниченную область содержимого
+        "collapsed": False,  # Свернуть боковую панель
+        "sidebar": {
+            "nav_small_text": False,  # Уменьшить текст в навигационной боковой панели
+            "show_user_apps": False,  # Показать приложения пользователя,  # Скрыть навигацию по боковой панели
+        },
+        "navbar": {
+            "fixed": True,  # Фиксированная панель навигации сверху
+            "show_apps": True,  # Показать приложения
+        },
+        "breadcrumbs": {
+            "fixed": True,  # Фиксированные хлебные крошки
+            "autohide": False,  # Автоматически скрывать хлебные крошки на мобильных устройствах
+        },
+        "footer": {
+            "fixed": True,  # Фиксированный подвал
+        },
+        "show_about": False,  # Показать сведения о проекте
+        "show_settings": False,  # Показать настройки
+        "show_language": False,  # Показать выбор языка
+        "show_theme": True,  # Показать выбор темы
+        "show_sidebar": True,  # Показать переключатель боковой панели
+        "show_navbar": True,  # Показать переключатель панели навигации
+        "show_breadcrumbs": True,  # Показать переключатель хлебных крошек
+        "show_footer": True,  # Показать переключатель подвала
+    },
+}
