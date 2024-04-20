@@ -10,4 +10,8 @@ urlpatterns = [
         name="holidays_by_hashtag",
     ),
     path("search/", views.search, name="search"),
+    path("holiday/<str:slug>/", views.holiday_detail, name="holiday_detail"),
+    path(
+        "day/<int:year>/<int:month>/<int:day>/", views.day_holidays, name="day_holidays"
+    ),
 ]

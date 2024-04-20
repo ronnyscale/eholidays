@@ -18,3 +18,74 @@ footer {
 #navigaton {
     margin-left: 20px;
 }
+
+
+.calendar {
+    width: 100%;
+    /* Ширина календаря на больших экранах */
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 3px;
+    justify-content: center;
+    /* Центрируем дни календаря по горизонтали */
+}
+
+.day {
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    overflow: hidden;
+    /* Добавляем обрезание содержимого, выходящего за пределы */
+    position: relative;
+    /* Добавляем относительное позиционирование для псевдоэлемента */
+}
+
+.day:hover::after {
+    content: '';
+    /* Добавляем контент для псевдоэлемента */
+    position: absolute;
+    /* Позиционируем псевдоэлемент абсолютно относительно родителя */
+    top: 50%;
+    /* Перемещаем псевдоэлемент на вертикальное положение посередине */
+    left: 50%;
+    /* Перемещаем псевдоэлемент на горизонтальное положение посередине */
+    transform: translate(-50%, -50%);
+    /* Сдвигаем псевдоэлемент обратно на половину его размера, чтобы он оказался точно посередине */
+    width: 40px;
+    /* Устанавливаем ширину кружочка */
+    height: 40px;
+    /* Устанавливаем высоту кружочка */
+    border-radius: 50%;
+    /* Делаем кружочек */
+    background-color: rgba(0, 0, 0, 0.2);
+    /* Устанавливаем цвет кружочка с некоторой прозрачностью */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.header button:focus {
+    outline: none;
+}
+

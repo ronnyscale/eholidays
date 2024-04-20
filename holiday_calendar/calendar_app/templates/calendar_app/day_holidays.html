@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Праздники на {{ selected_day }}{% endblock %}
+
+{% block content %}
+<h1 class="text-center mb-4">Праздники на {{ selected_day }}</h1>
+{% if holidays %}
+    <div class="row">
+        {% for holiday in holidays %}
+            <div class="col-md-6">
+                <div class="card mb-4 border-0 rounded-3 shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ holiday.name }}</h5>
+                        <p class="card-text">{{ holiday.description }}</p>
+                        <!-- Дополнительная информация о празднике -->
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-info" role="alert">
+        На выбранный день праздников нет.
+    </div>
+{% endif %}
+{% endblock %}
