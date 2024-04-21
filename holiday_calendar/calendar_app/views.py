@@ -125,7 +125,7 @@ def day_holidays(request, year, month, day):
     formatted_date = f"{selected_date.day} {russian_months[selected_date.month]} {selected_date.year} года"
 
     # Фильтруем праздники по выбранной дате
-    holidays = Holiday.objects.filter(date=selected_date)
+    holidays = Holiday.objects.filter(date__month=int(month), date__day=int(day))
 
     context = {"holidays": holidays, "selected_day": formatted_date}
     return render(request, "calendar_app/day_holidays.html", context)

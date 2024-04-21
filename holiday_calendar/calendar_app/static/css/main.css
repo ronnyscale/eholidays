@@ -19,7 +19,6 @@ footer {
     margin-left: 20px;
 }
 
-
 .calendar {
     width: 100%;
     /* Ширина календаря на больших экранах */
@@ -89,3 +88,15 @@ footer {
     outline: none;
 }
 
+footer {
+    background-color: #add8e6;
+    /* Пастельно-синий цвет подвала */
+    color: #ffffff;
+    /* Белый цвет текста */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    z-index: 999;
+}

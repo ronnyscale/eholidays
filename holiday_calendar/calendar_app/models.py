@@ -50,6 +50,9 @@ class Holiday(models.Model):
     )  # Связь с моделью Location
     hashtags = models.ManyToManyField(Hashtag, verbose_name="Хэштеги")
     slug = models.SlugField(max_length=100, unique=True, blank=True)
+    repeat_yearly = models.BooleanField(
+        default=False, verbose_name="Повторяется ежегодно"
+    )
 
     def save(self, *args, **kwargs):
         # Транслитерация и создание слага для хештега
