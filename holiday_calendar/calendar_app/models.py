@@ -40,7 +40,7 @@ class Location(models.Model):
 
 class Holiday(models.Model):
     name = models.CharField(max_length=100, verbose_name="Праздник")
-    date = models.DateField(verbose_name="Дата")
+    date = models.DateField(verbose_name="Дата", default="2000-01-01")
     description = models.TextField(verbose_name="Описание")
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, verbose_name="Категория"
@@ -48,7 +48,7 @@ class Holiday(models.Model):
     location = models.ForeignKey(
         Location, on_delete=models.CASCADE, verbose_name="Местоположение"
     )  # Связь с моделью Location
-    hashtags = models.ManyToManyField(Hashtag, verbose_name="Хэштеги")
+    hashtags = models.ManyToManyField(Hashtag, blank=True, null=True, verbose_name="Хэштеги")
     slug = models.SlugField(max_length=100, unique=True, blank=True)
     repeat_yearly = models.BooleanField(
         default=False, verbose_name="Повторяется ежегодно"

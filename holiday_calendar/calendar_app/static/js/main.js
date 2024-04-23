@@ -7,29 +7,27 @@ document.addEventListener("DOMContentLoaded", function () {
     const calendarHeader = document.getElementById("currentMonthYear");
 
     function updateCalendar() {
-    const firstDayOfMonth = new Date(currentYear, currentMonth - 1, 1); // Вычитаем 1, чтобы вернуться к нормальной нумерации месяцев
-    const lastDayOfMonth = new Date(currentYear, currentMonth, 0); // Используем следующий месяц и 0 день, чтобы получить последний день текущего месяца
-    const firstDayOfWeek = firstDayOfMonth.getDay();
-    const daysInMonth = lastDayOfMonth.getDate();
-    const daysElement = document.querySelector(".calendar .days");
-    daysElement.innerHTML = "";
+        const firstDayOfMonth = new Date(currentYear, currentMonth - 1, 1);
+        const lastDayOfMonth = new Date(currentYear, currentMonth, 0);
 
-    calendarHeader.textContent = monthNames[currentMonth - 1] + " " + currentYear; // Вычитаем 1, чтобы вернуться к нормальной нумерации месяцев
+        // Обновляем информацию в календаре
+        calendarHeader.textContent = monthNames[currentMonth - 1] + " " + currentYear;
+        const daysInMonth = lastDayOfMonth.getDate();
+        const daysElement = document.querySelector(".calendar .days");
+        daysElement.innerHTML = "";
 
-    // Добавляем дни месяца
-    for (let i = 1; i <= daysInMonth; i++) {
-        const day = document.createElement("div");
-        day.classList.add("day");
-        day.textContent = i;
-        daysElement.appendChild(day);
+        // Добавляем дни месяца
+        for (let i = 1; i <= daysInMonth; i++) {
+            const day = document.createElement("div");
+            day.classList.add("day");
+            day.textContent = i;
+            daysElement.appendChild(day);
+        }
     }
-}
 
-    // Обработчики событий для кнопок переключения месяца
     document.getElementById("prevMonth").addEventListener("click", function () {
-        if (currentMonth === 1) { // Если текущий месяц январь, переключаемся на декабрь предыдущего года
+        if (currentMonth === 1) {
             currentMonth = 12;
-            currentYear--;
         } else {
             currentMonth--;
         }
@@ -37,9 +35,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.getElementById("nextMonth").addEventListener("click", function () {
-        if (currentMonth === 12) { // Если текущий месяц декабрь, переключаемся на январь следующего года
+        if (currentMonth === 12) {
             currentMonth = 1;
-            currentYear++;
         } else {
             currentMonth++;
         }
@@ -53,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const selectedDay = event.target.textContent;
             const currentMonthYear = document.getElementById("currentMonthYear").textContent;
             const [currentMonth, currentYear] = currentMonthYear.split(" ");
-            const monthIndex = monthNames.indexOf(currentMonth) + 1; // Получаем индекс месяца в массиве monthNames и добавляем 1, чтобы получить его числовое представление
+            const monthIndex = monthNames.indexOf(currentMonth) + 1;
 
             // Перенаправляем пользователя на страницу с праздниками выбранного дня
             window.location.href = `/day/${currentYear}/${monthIndex}/${selectedDay}/`;

@@ -1,7 +1,9 @@
 from datetime import datetime
 
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.db.models import Q
+from django.db.models.functions import Lower
+
 from django.utils import timezone
 from .models import Holiday, Hashtag, Category, Location
 
@@ -29,8 +31,8 @@ def search(request):
 
     if q:
         # Выполняем поиск по имени и описанию праздника
-        holidays = Holiday.objects.filter(name__icontains=q) | Holiday.objects.filter(
-            description__icontains=q
+        holidays = Holiday.objects.filter(
+            Q(name__iregex=q) | Q(description__iregex=q)
         )
         return render(
             request,
