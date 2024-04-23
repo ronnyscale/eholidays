@@ -16,6 +16,9 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="{% url 'index' %}" style="color: #ffffff;">Праздники сегодня</a> <!-- Белый цвет текста -->
             </div>
+            <div class="container-fluid justify-content-end" style="margin-right: 100px;">
+                <a class="navbar-brand" href="{% url 'admin:index' %}" style="color: #ffffff; font-size: medium;">Администрирование</a> <!-- Белый цвет текста -->
+            </div>
         </nav>
     </header>
     
@@ -24,9 +27,9 @@
         {% endblock %}
     </main>
     
-    <footer style="background-color: #262322" class="text-center py-3 sticky-bottom">
+    <!-- <footer style="background-color: #262322" class="text-center py-3 sticky-bottom">
         &copy; 2024 Мой календарь праздников
-    </footer>
+    </footer> -->
 
     <!-- Подключение скриптов Bootstrap и jQuery (необходимо для некоторых компонентов Bootstrap) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
