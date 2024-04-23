@@ -17,7 +17,7 @@
                         
                         <div class="mt-3">
                             {% for hashtag in holiday.hashtags.all %}
-                                <a href="{% url 'holidays_by_hashtag' hashtag=hashtag.slug %}" class="badge bg-secondary">{{ hashtag.name }}</a>
+                                <a href="{% url 'holidays_by_hashtag' hashtag=hashtag.slug %}" class="badge bg-custom">{{ hashtag.name }}</a>
                             {% endfor %}
                         </div>
                         <p class="card-text text-right" style="text-align: right;">{{ holiday.date }}</p>
