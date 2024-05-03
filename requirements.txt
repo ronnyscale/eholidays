@@ -13,6 +13,7 @@ isort==5.13.2
 mccabe==0.7.0
 pillow==10.3.0
 platformdirs==4.2.0
+psycopg2==2.9.9
 pyenchant==3.2.2
 pylint==3.1.0
 python-dateutil==2.9.0.post0
