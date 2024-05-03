@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+from ast import Try
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-1v1qz6+_va#xgy(f2y=o_x)(a6+#z=^c4l+9_g-rm%4v-pg9v-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['www.ronnyscale.pythonanywhere.com', 'ronnyscale.pythonanywhere.com']
+ALLOWED_HOSTS = ['www.ronnyscale.pythonanywhere.com', 'ronnyscale.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition
@@ -34,7 +35,6 @@ INSTALLED_APPS = [
     "calendar_app",
     
     "bootstrap4",
-    "admin_interface",
     "colorfield",
     
     "django.contrib.humanize",
@@ -140,36 +140,3 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-ADMIN_INTERFACE_CONFIG = {
-    "SEARCH_URL": "http://google.com/search?q=",  # Настройка поиска, можно оставить пустым
-    "CONFIGS": {
-        "skin": "skin-blue",  # Цветовая схема. Доступные значения: skin-blue, skin-black, skin-red, skin-yellow, skin-purple, skin-green
-        "layout": "vertical",  # Вертикальный или горизонтальный интерфейс. Доступные значения: vertical, horizontal
-        "boxed": False,  # Установите в True, чтобы иметь ограниченную область содержимого
-        "collapsed": False,  # Свернуть боковую панель
-        "sidebar": {
-            "nav_small_text": False,  # Уменьшить текст в навигационной боковой панели
-            "show_user_apps": False,  # Показать приложения пользователя,  # Скрыть навигацию по боковой панели
-        },
-        "navbar": {
-            "fixed": True,  # Фиксированная панель навигации сверху
-            "show_apps": True,  # Показать приложения
-        },
-        "breadcrumbs": {
-            "fixed": True,  # Фиксированные хлебные крошки
-            "autohide": False,  # Автоматически скрывать хлебные крошки на мобильных устройствах
-        },
-        "footer": {
-            "fixed": True,  # Фиксированный подвал
-        },
-        "show_about": False,  # Показать сведения о проекте
-        "show_settings": True,  # Показать настройки
-        "show_language": False,  # Показать выбор языка
-        "show_theme": True,  # Показать выбор темы
-        "show_sidebar": True,  # Показать переключатель боковой панели
-        "show_navbar": True,  # Показать переключатель панели навигации
-        "show_breadcrumbs": True,  # Показать переключатель хлебных крошек
-        "show_footer": True,  # Показать переключатель подвала
-    },
-}
