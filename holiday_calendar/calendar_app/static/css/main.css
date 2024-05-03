@@ -110,3 +110,8 @@ footer {
     color: #fff;
     /* Цвет текста */
 }
+
+.highlight {
+    background-color: #fd9957;
+    /* Другие стили, которые вы хотите применить */
+}

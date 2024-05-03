@@ -9,7 +9,7 @@
         <div class="card-body">
             <form method="get" action="{% url 'search' %}" class="input-group mb-4">
                 {% csrf_token %}
-                <input type="text" name="query" class="form-control" placeholder="Поиск..." aria-label="Поиск..." aria-describedby="button-addon2">
+                <input type="text" name="query" class="form-control rounded-3" placeholder="Поиск..." aria-label="Поиск..." aria-describedby="button-addon2">
                 <button class="btn btn-outline-secondary buttons" type="submit" id="button-addon2">Найти</button>
             </form>
         </div>
@@ -65,43 +65,6 @@
 
     
     <div class="col-md-8">
-        <div class="row mb-2">
-            <div class="col-3">
-                <div class="card mb-3 border-0 rounded-3 shadow text-center">
-                    <div class="card-body">
-                        <p class="card-text">{{ today }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <a href="#" style="text-decoration: none;">
-                <div class="card mb-3 border-0 rounded-3 shadow text-center">
-                    <div class="card-body">
-                        <p class="card-text text-decoration-none text-black">Этот месяц</p>
-                    </div>
-                </div>
-                </a>
-            </div>
-            <div class="col-3">
-                <a href="#" style="text-decoration: none;">
-                <div class="card mb-3 border-0 rounded-3 shadow text-center">
-                    <div class="card-body">
-                        <p class="card-text text-decoration-none text-black">Интересные</p>
-                    </div>
-                </div>
-                </a>
-            </div>
-            <div class="col-3">
-                <a href="#" style="text-decoration: none;">
-                <div class="card mb-3 border-0 rounded-3 shadow text-center">
-                    <div class="card-body">
-                        <p class="card-text text-decoration-none text-black">Избранные</p>
-                    </div>
-                </div>
-                </a>
-            </div>
-        </div>
-
         {% if selected_holidays %}
             {% for holiday in selected_holidays %}
                 <div class="card mb-4 border-0 rounded-3 shadow">

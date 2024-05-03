@@ -152,7 +152,7 @@ ADMIN_INTERFACE_CONFIG = {
             "fixed": True,  # Фиксированный подвал
         },
         "show_about": False,  # Показать сведения о проекте
-        "show_settings": False,  # Показать настройки
+        "show_settings": True,  # Показать настройки
         "show_language": False,  # Показать выбор языка
         "show_theme": True,  # Показать выбор темы
         "show_sidebar": True,  # Показать переключатель боковой панели

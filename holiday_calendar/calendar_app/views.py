@@ -15,19 +15,7 @@ def search(request):
     holidays_today = Holiday.objects.filter(date=today)
     all_holidays = Holiday.objects.all()
 
-    categories = Category.objects.all()
-    locations = Location.objects.all()
-
-    category = request.GET.get("category")
-    location = request.GET.get("location")
-
     selected_holidays = holidays_today
-
-    if category and category != "":
-        selected_holidays = all_holidays.filter(category=category)
-
-    if location and location != "":
-        selected_holidays = selected_holidays.filter(location=location)
 
     if q:
         # Выполняем поиск по имени и описанию праздника
@@ -40,15 +28,16 @@ def search(request):
             {
                 "search_results": holidays,
                 "today": today,
-                "categories": categories,
-                "locations": locations,
-                "selected_category": int(category) if category else None,
-                "selected_location": int(location) if location else None,
+                "q": q,
             },
         )
     else:
         return render(
-            request, "calendar_app/search_results.html", {"search_results": []}
+            request,
+            "calendar_app/search_results.html",
+            {
+                "search_results": selected_holidays,
+            },
         )
 
 
